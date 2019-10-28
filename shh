@@ -1,0 +1,29 @@
+Генерація ключа:
+ssh-keygen -C "My key alias"
+"My key alias" - тут зазвичай user @ host або email
+За замовчуванням пара ключів кладуться в
+
+~ / .Ssh / id_rsa
+~ / .Ssh / id_rsa.pub (* це публічний ключ який треба скопіювати в акаунт github.com)
+
+
+==================================================================================================
+
+У файлі ~ / .ssh / config пишемо:
+
+Host myname.github.com
+	HostName github.com
+	User git
+    IdentityFile ~/.ssh/id_rsa.myname
+    
+    ================================================================
+    
+    Треба виставити права:
+
+chmod 600 ~/.ssh/config
+Прив'язуємо віддалений репозиторій:
+
+git remote add origin ssh://git@myname.github.com:myname/repo.git
+Або міняємо URL існуючого:
+
+git remote set-url origin git@myname.github.com:myname/repo.git
